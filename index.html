@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jasmin Mohapatra 🎨</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' };
+  </script>
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      transition: background 0.5s, color 0.5s;
+    }
+    body.light {
+      background: linear-gradient(to right, #e0f7fa, #80deea);
+      color: #1a202c;
+    }
+    body.dark {
+      background: linear-gradient(to right, #2d3748, #1a202c);
+      color: #edf2f7;
+    }
+    header {
+      position: absolute;
+      width: 100%;
+      padding: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 20;
+    }
+    .hero-img {
+      width: 200px;
+      height: 200px;
+      border: 4px solid #00f0ff;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      transition: transform 0.4s ease, box-shadow 0.4s;
+    }
+    .hero-img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px #00f0ff;
+    }
+    h1:hover {
+      cursor: pointer;
+      animation: bounce 0.6s;
+    }
+    @keyframes bounce {
+      0% { transform: scale(1); }
+      25% { transform: scale(1.1); }
+      50% { transform: scale(0.95); }
+      75% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    .btn {
+      background: #00f0ff;
+      color: #000;
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: 9999px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: transform 0.3s, background 0.3s;
+      margin-top: 1rem;
+    }
+    .btn:hover {
+      transform: scale(1.05);
+      background: #00d5e2;
+    }
+    canvas#bgCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+    }
+    #notification {
+      transition: opacity 0.5s ease;
+    }
+  </style>
+</head>
+<body class="light">
+  <!-- Canvas Background -->
+  <canvas id="bgCanvas"></canvas>
+
+  <!-- Notification -->
+  <div id="notification" class="fixed top-6 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-lg shadow-md hidden z-50">
+    ✅ Message sent successfully!
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="text-xl font-bold">MY LANDING PAGE</div>
+    <div class="space-x-2">
+      <button id="themeBtn" class="btn text-sm">Toggle Dark/Light</button>
+      <button id="visitBtn" class="btn text-sm">Visited: 0 times</button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero relative z-10 flex flex-col items-center justify-center min-h-screen text-center px-4">
+    <div class="hero-img">
+      <img src="https://i.postimg.cc/59GJ8Z6T/HERO-PROFILE-IMAGE.jpg" alt="My Photo" class="object-cover object-top w-full h-full" />
+    </div>
+    <h1 class="text-4xl font-extrabold mb-2">Jasmin Mohapatra</h1>
+    <p class="text-lg mb-4">Aspiring Developer • Creative Thinker • Poet</p>
+    <p id="typed" class="text-lg font-mono"></p>
+    <button class="btn" onclick="window.location.href='#contact'">Contact Me</button>
+  </section>
+
+  <!-- About Me Section -->
+  <section class="py-16 px-8 bg-white text-gray-800 dark:bg-gray-800 dark:text-white transition-all duration-500 relative z-10">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-4">About Me</h2>
+      <p class="text-lg text-gray-600 dark:text-gray-300">
+        I’m a passionate beginner in web development and design. I love exploring creative ways to build user-friendly websites. I also have a passion for writing and love to write poems and stories. This is my WEEK-1 in web development and I’m learning Tailwind CSS to style everything from scratch!
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-16 text-center relative z-10">
+    <h2 class="text-3xl font-bold mb-6">Contact Me</h2>
+   <form id="contactForm" class="max-w-md mx-auto space-y-4">
+  <input type="text" placeholder="Your Name" required 
+    class="w-full px-4 py-2 rounded border focus:outline-none 
+           text-gray-800 dark:text-white 
+           bg-white dark:bg-gray-700 
+           placeholder-gray-500 dark:placeholder-gray-400">
+           
+  <input type="email" placeholder="Your Email" required 
+    class="w-full px-4 py-2 rounded border focus:outline-none 
+           text-gray-800 dark:text-white 
+           bg-white dark:bg-gray-700 
+           placeholder-gray-500 dark:placeholder-gray-400">
+           
+  <textarea placeholder="Your Message" required rows="4" 
+    class="w-full px-4 py-2 rounded border focus:outline-none 
+           text-gray-800 dark:text-white 
+           bg-white dark:bg-gray-700 
+           placeholder-gray-500 dark:placeholder-gray-400"></textarea>
+           
+  <button type="submit" class="btn w-full">Send Message</button>
+    </form>
+    <p class="mt-6">Email: <a href="mailto:jasminmohapatramazed@gmail.com" class="underline">jasminmohapatramazed@gmail.com</a><br>
+       Phone: <a href="tel:+919999999991" class="underline">+91‑9999999991</a></p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center text-sm py-4 bg-white text-gray-500">
+    &copy; 2025 Jasmin Mohapatra. All rights reserved.
+  </footer>
+
+  <!-- Scroll to Top Button -->
+  <button id="scrollTopBtn" class="fixed bottom-6 right-6 bg-cyan-400 text-black font-bold px-4 py-2 rounded-full shadow-lg hover:bg-cyan-300 transition-all hidden z-50">
+    ↑ Top
+  </button>
+
+  <script>
+    // Theme Toggle
+    const btn = document.getElementById('themeBtn');
+    const body = document.body;
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    body.classList.remove('light', 'dark');
+    body.classList.add(currentTheme);
+
+    btn.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      body.classList.toggle('light');
+      localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
+    });
+
+    // Typed Text Effect
+    const words = ["Web Developer", "Writer", "AI/ML Enthusiast", "Problem Solver"];
+    let w = 0, c = 0, del = false;
+    function type() {
+      const txt = words[w];
+      const curr = txt.substring(0, c);
+      document.getElementById('typed').textContent = curr;
+      if (!del && c < txt.length) { c++; }
+      else if (!del && c === txt.length) { del = true; setTimeout(type, 1000); return; }
+      else if (del && c > 0) { c--; }
+      else { del = false; w = (w + 1) % words.length; }
+      setTimeout(type, del ? 50 : 100);
+    }
+    type();
+
+    // Canvas Animated Background
+    const canvas = document.getElementById('bgCanvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() { this.reset(); }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.r = Math.random() * 2 + 1;
+        this.dx = (Math.random() - 0.5) * 0.5;
+        this.dy = (Math.random() - 0.5) * 0.5;
+        this.alpha = Math.random() * 0.5 + 0.2;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+        ctx.fillStyle = body.classList.contains('dark')
+          ? `rgba(255,255,255,${this.alpha})`
+          : `rgba(0,0,0,${this.alpha})`;
+        ctx.fill();
+      }
+      update() {
+        this.x += this.dx;
+        this.y += this.dy;
+        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+          this.reset();
+        }
+      }
+    }
+
+    function initParticles(count = 100) {
+      particles = [];
+      for (let i = 0; i < count; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (const p of particles) {
+        p.update();
+        p.draw();
+      }
+      requestAnimationFrame(animateParticles);
+    }
+
+    initParticles();
+    animateParticles();
+
+    // Visit Counter
+    const visitBtn = document.getElementById('visitBtn');
+    let visits = parseInt(localStorage.getItem('visits') || '0');
+    visits += 1;
+    localStorage.setItem('visits', visits);
+    visitBtn.textContent = `Visited: ${visits} time${visits > 1 ? 's' : ''}`;
+
+    // Contact Form Notification
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const notification = document.getElementById("notification");
+      notification.classList.remove("hidden");
+      setTimeout(() => {
+        notification.classList.add("hidden");
+      }, 3000);
+      this.reset();
+    });
+
+    // Scroll to Top Button
+    const scrollBtn = document.getElementById("scrollTopBtn");
+    window.addEventListener("scroll", () => {
+      scrollBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+    scrollBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+</body>
+</html>
